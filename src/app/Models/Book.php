@@ -52,25 +52,22 @@ class Book extends Model
      * @param string  $search
      * @return Builder
      */
-    public function scopeSearch(Builder $query, $search)
+    public function scopeSearch(Builder $query, $search): Builder
     {
-        if (empty($search))
-        {
+        if (empty($search)) {
             return $query;
         }
 
         $searchFilter = self::getCleanSearch($search);
 
-        foreach ($searchFilter as $index => $value)
-        {
-            if ($index == 0)
-            {
-                $query->where('book_title','LIKE', '%' . $value . '%');
+        foreach ($searchFilter as $index => $value) {
+            if ($index == 0) {
+                $query->where('book_title', 'LIKE', '%' . $value . '%');
                 $query->orWhere('author_first_name', 'LIKE', '%' . $value . '%');
                 $query->orWhere('author_last_name', 'LIKE', '%' . $value . '%');
             }
 
-            $query->orWhere('book_title','LIKE', '%' . $value . '%');
+            $query->orWhere('book_title', 'LIKE', '%' . $value . '%');
             $query->orWhere('author_first_name', 'LIKE', '%' . $value . '%');
             $query->orWhere('author_last_name', 'LIKE', '%' . $value . '%');
         }
@@ -84,14 +81,18 @@ class Book extends Model
      *
      * @return array
      */
-    public function getValidListFilters(Array $listFilters)
+    public function getValidListFilters(Array $listFilters): array
     {
         // we only allow sorting on the book title and author last name field
-        $listFilters['order_by'] = (!in_array($listFilters['order_by'], ['book_title', 'author_last_name']))? 'book_title': $listFilters['order_by'];
+        $listFilters['order_by'] = (!in_array($listFilters['order_by'], ['book_title', 'author_last_name']))
+            ? 'book_title'
+            : $listFilters['order_by'];
 
         //Make sure we have a valid direction value
         $listFilters['direction'] = strtoupper($listFilters['direction']);
-        $listFilters['direction'] = (!in_array($listFilters['direction'], ['ASC', 'DESC']))  ? 'ASC' : $listFilters['direction'];
+        $listFilters['direction'] = (!in_array($listFilters['direction'], ['ASC', 'DESC']))
+            ? 'ASC'
+            : $listFilters['direction'];
 
         return $listFilters;
     }
@@ -103,29 +104,25 @@ class Book extends Model
      *
      * @return array
      */
-    protected function getCleanSearch($search)
+    protected function getCleanSearch($search): array
     {
 
         // Check if we're dealing with a string with spaces
-        if (!is_array($search))
-        {
-            if (strpos($search,' ') === false)
-            {
+        if (!is_array($search)) {
+            if (strpos($search, ' ') === false) {
                 return array($search);
             }
 
             $search = explode(' ', $search);
 
             // this is probably a book title, so put it back together again.
-            if (count($search) < 2)
-            {
-                return array(implode(' ',$search));
+            if (count($search) < 2) {
+                return array(implode(' ', $search));
             }
         }
 
         $cleanSearch = array();
-        foreach ($search AS $value)
-        {
+        foreach ($search as $value) {
             $cleanSearch += self::getCleanSearch($value);
         }
 

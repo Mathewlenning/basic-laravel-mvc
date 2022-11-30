@@ -57,3 +57,5 @@ There isn't much to say about the implementation process. Since I had already cr
 what needed to be built, it was just a matter of building it.
 
 In total the app took me 3 days to plan and build. I took one extra day to refactor for a total of 4 days.
+
+# [Live Demo](https://mathewlenning.com/bookface/) #

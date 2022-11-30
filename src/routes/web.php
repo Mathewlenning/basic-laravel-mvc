@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BookController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +15,7 @@ use App\Http\Controllers\BookController;
 |
 */
 
-Route::controller(BookController::class)->group(function()
-{
+Route::controller(BookController::class)->group(function () {
     // Show/Sort/Search the list
     Route::get('/', 'index');
 
@@ -28,4 +28,3 @@ Route::controller(BookController::class)->group(function()
     // Export csv/xml
     Route::post('/export', 'export');
 });
-

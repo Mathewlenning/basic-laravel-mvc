@@ -33,8 +33,8 @@ class BookController extends Controller
 
     protected function getRequestData(Request $request)
     {
-        return ['list'   => $request->input('list', $request->old('list',['order_by' => 'book_title', 'direction' => 'ASC'])),
-         'search' => $request->input('search',$request->old('search')),
+        return ['list'   => $request->input('list', $request->old('list', ['order_by' => 'book_title', 'direction' => 'ASC'])),
+         'search' => $request->input('search', $request->old('search')),
          'message' => Session::get('message'),
          'message_type' => Session::get('message_type')];
     }
@@ -54,26 +54,17 @@ class BookController extends Controller
         $message = '';
         $message_type = 'success';
 
-        if (!empty($addForm['data']))
-        {
+        if (!empty($addForm['data'])) {
             $message = 'Record Created';
-            $message_type = 'success';
-            try
-            {
-                if (!empty($addForm['data']['book_id']))
-                {
+            try {
+                if (!empty($addForm['data']['book_id'])) {
                     $book = $books->find($addForm['data']['book_id']);
 
                     $book->update($addForm['data']);
-                }
-                else
-                {
+                } else {
                     $books->create($addForm['data']);
                 }
-
-            }
-            catch (Throwable $e)
-            {
+            } catch (Throwable $e) {
                 $message = $this->getErrorMessage($e);
                 $message_type = 'danger';
             }
@@ -98,12 +89,9 @@ class BookController extends Controller
         $message = 'Record Deleted';
         $message_type = 'success';
 
-        try
-        {
+        try {
             $book->find($request->input('book_id'))->delete();
-        }
-        catch (Throwable $e)
-        {
+        } catch (Throwable $e) {
             $message = $this->getErrorMessage($e);
             $message_type = 'danger';
         }
@@ -127,24 +115,21 @@ class BookController extends Controller
         $export = $request->input('export');
 
         // We can't export a file with no columns
-        if (empty($export['columns']))
-        {
+        if (empty($export['columns'])) {
             Session::flash('message', 'Export failed. Please choose at least one column to export.');
             Session::flash('message_type', 'error');
             return redirect('/')->withInput();
         }
 
         // We only allow two format types ATM
-        if (!in_array($export['format'], ['XML', 'CSV']))
-        {
+        if (!in_array($export['format'], ['XML', 'CSV'])) {
             Session::flash('message', 'Export failed. Unsupported format requested.');
             Session::flash('message_type', 'error');
 
             return redirect('/')->withInput();
         }
 
-        if (in_array('authors_name', $export['columns']))
-        {
+        if (in_array('authors_name', $export['columns'])) {
             // First we need to get rid of the placeholder value
             $columns = array_flip($export['columns']);
             unset($columns['authors_name']);
@@ -164,8 +149,8 @@ class BookController extends Controller
         $fileName = 'BookFace-export-'.now()->format('Y-m-d') .'.'. strtolower($export['format']);
 
         return response($content)
-            ->header('Content-Type','text/' . strtolower($export['format']))
-            ->header('Content-Disposition','attachement; filename=' . $fileName);
+            ->header('Content-Type', 'text/' . strtolower($export['format']))
+            ->header('Content-Disposition', 'attachement; filename=' . $fileName);
     }
 
     /**
@@ -179,9 +164,8 @@ class BookController extends Controller
     {
         $errorMessage = $e->getMessage();
 
-        if(strpos($errorMessage, 'SQLSTATE') === false)
-        {
-          return $errorMessage;
+        if (strpos($errorMessage, 'SQLSTATE') === false) {
+            return $errorMessage;
         }
 
         $start = strlen('SQLSTATE['.$e->getCode().']:');
@@ -193,8 +177,7 @@ class BookController extends Controller
             $length
         );
 
-        if (empty($message))
-        {
+        if (empty($message)) {
             return 'Unknown error has occurred. Please contact the administrator for futher assistance.';
         }
 
