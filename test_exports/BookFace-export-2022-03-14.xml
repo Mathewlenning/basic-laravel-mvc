@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+	<record>
+		<book_title><![CDATA[test]]></book_title>
+		<author_first_name>test</author_first_name>
+		<author_last_name>test</author_last_name>
+	</record>
+</records>

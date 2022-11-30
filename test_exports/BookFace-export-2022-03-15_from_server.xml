@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+	<record>
+		<book_title><![CDATA[Adventures of Tom Sawyer]]></book_title>
+	</record>
+	<record>
+		<book_title><![CDATA[Alice's Adventures in Wonderland]]></book_title>
+	</record>
+	<record>
+		<book_title><![CDATA[Pride and Prejudice]]></book_title>
+	</record>
+</records>

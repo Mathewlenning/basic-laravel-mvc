@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+	<record>
+		<book_title><![CDATA[The Adventures of Huckleberry Finn]]></book_title>
+		<author_first_name>Mark</author_first_name>
+		<author_last_name>Twain</author_last_name>
+	</record>
+	<record>
+		<book_title><![CDATA[Pride and Prejudice]]></book_title>
+		<author_first_name>Jane</author_first_name>
+		<author_last_name>Austen</author_last_name>
+	</record>
+	<record>
+		<book_title><![CDATA[Alice's Adventures in Wonderland]]></book_title>
+		<author_first_name>Lewis</author_first_name>
+		<author_last_name>Carroll</author_last_name>
+	</record>
+	<record>
+		<book_title><![CDATA[Adventures of Tom Sawyer]]></book_title>
+		<author_first_name>Mark</author_first_name>
+		<author_last_name>Twain</author_last_name>
+	</record>
+</records>
