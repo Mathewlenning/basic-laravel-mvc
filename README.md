@@ -2,7 +2,7 @@
 This is a coding assignment I created for a project interview. 
 This was my first Laravel app and I have to say I was impressed. 
 I honed my programming skills in the insanity that is the Joomla Framework. 
-So it was a nice to work with a system that worked with me rather than against me. 
+So it was nice to use a framework that worked with me rather than against me. 
 Laravel documentation is awesome too.
 
 ### How to deploy the app ###
@@ -27,6 +27,13 @@ but you could run artisan migrate to generate it without the test data.
   - A list with only titles
   - A list with only authors
 - Two weeks to complete the assignment
+
+## Tech Stack ##
+- Laravel/PHP
+- HTML
+- JQuery 
+- UIKit
+- MySQL
 
 ## Process ##
 I started with a rough mockup of the UI. This helps to guide me during the implementation stage
